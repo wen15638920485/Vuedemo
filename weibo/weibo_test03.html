@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>微博ajax接口测试</title>
+<link href="css/weibo.css" rel="stylesheet" type="text/css" />
+<script src="js/vue.min_02.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      
+    </script>
+</head>
+<body>
+<!--
+思路，根据后台来读取数据、写入数据、删除数据、顶某一条数据、踩某一条数据
+开发思想：
+this.$http后面有三个参数。get,post,jsonp如果不写默认是get
+如果加了.then读取数据时写data否则可以不写
+1、用vue中的ajax来先读取数据，通过循环遍历到页面中去
+2、写入数据，根据用户所输入的信息写入到数据库，并且更新当前页面
+3、解决分页，根据接口提供的数据我们对内容进行分页处理
+4、开发顶和踩的功能
+5、开发删除数据的功能
+-->
+<div class="weibo_demo">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" v-model="weibo_content"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" @click="addWeibo()" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent" v-show="weibo_data.length==0">暂无留言</div>
+        <div class="messList">
+        	<div class="reply" v-for="item in weibo_data">
+                <p class="replyContent">{{item.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{item.time}}</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top">{{item.acc}}</a>
+                        <a href="javascript:;" class="down_icon">{{item.ref}}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>
+			
+        </div>
+        <div class="page">
+        	<a href="javascript:;" v-for="item in page_num" :class="item.className" @click="getPageData(item.num)">{{item.num}}</a>
+        </div>
+    </div>
+</div>
+<script>
+var dataUrl='weibo.php';//定义接口的地址
+new Vue({
+	el:'.weibo_demo',//选择vue要执行的标签（vue在哪一段执行）
+	data:{
+		weibo_data:[],//初始化列表的值
+		weibo_content:'',//初始化用户输入的值
+		page_num:[],//一共有多少页，默认设置成空
+		this_page:1//当前是第几页
+	},
+	methods:{
+		addWeibo(){//写入数据
+			this.$http({
+				url:dataUrl,//接口地址
+				data:{
+					act:'add',
+					content:this.weibo_content
+				}
+			}).then(function(res){
+				//alert(res.data.time);
+				//alert(this.weibo_data.length);
+				var arr=res.data;
+				this.weibo_data.unshift({
+					content:this.weibo_content,
+					time:arr.time,
+					acc:0,
+					ref:0,
+					id:arr.id
+				});
+				this.weibo_content='';
+			}).error(function(){
+				alert('连接失败');
+			})
+		},
+		getPageData(n){//读取数据
+		//重新定义当前是第几页
+			this.this_page=n;
+			this.setCur(this.page_num.length);
+			this.$http({
+				url:dataUrl,//接口地址
+				data:{//get传的参数
+					act:'get',
+					page:n
+				}
+			}).then(function(res){
+				this.weibo_data=res.data;
+			}).error(function(){
+				alert('连接失败');
+			})
+		},
+		setCur(count){//设置分页样式
+			//alert(count);
+			this.page_num=[];//每次清空分页数组
+			for(var i=1; i<=count; i++)
+			{
+				if(i==this.this_page)
+				{
+					//判断当前页
+					this.page_num.push({num:i,className:'active'});
+				}
+				else
+				{
+					this.page_num.push({num:i,className:''})
+				}
+			}
+		},
+		data_num(){//读取一共有多少页数据
+			this.$http({
+				url:dataUrl,
+				data:{
+					act:'get_page_count'
+				}
+			}).then(function(res){
+				//alert(res.data.count);
+				this.setCur(res.data.count);
+			}).error(function(){
+				alert('连接失败');
+			})
+		}
+	},
+	created:function(){//初始化完成执行代码
+		this.getPageData(1)//初始化读取第一页数据
+		this.data_num();//读取一共有多少页数据
+	}
+})
+</script>
+</body>
+</html>

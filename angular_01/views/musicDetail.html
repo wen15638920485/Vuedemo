@@ -1,0 +1,27 @@
+
+<link rel="stylesheet" type="text/css" href="css/music.css" />
+<div class="player-box">
+	<audio autoplay="autoplay" controls="" ng-src="{{media_url}}"></audio>
+</div>
+<div class="music-detail-icon">
+	<img ng-src="{{imagePrefix+data.cover}}">
+</div>
+<div class="music-detail-album">
+	<span>{{data.album}}</span>
+</div>
+<div class="music-detail-author-title">
+	<span>{{data.hp_title}}</span>
+</div>
+<div class="music-detail-story">
+	<div class="music-detail-story-title">
+		{{data.story_title}}
+	</div>
+	<div class="music-detail-story-author">
+		作者: {{data.story_author}}
+	</div>
+	<div class="music-detail-story-content" ng-bind-html="content">
+	<span>
+			<!--<img alt="" ng-src="" style="height:498px; width:394px"><br>-->
+	</span>
+	</div>
+</div>

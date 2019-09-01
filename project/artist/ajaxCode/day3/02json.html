@@ -1,0 +1,26 @@
+;
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		var jsonStr = '{"name":"wangwu","children":[{"name":"laowang","age":18},{"name":"dawang","age":16},{"name":"xiaowang","age":14}]}'
+		
+		
+		var obj = JSON.parse(jsonStr);
+		
+		var childrens = obj.children;
+		
+		console.log(childrens[2].age);		
+		
+		
+	
+	</script>
+</html>
+
+

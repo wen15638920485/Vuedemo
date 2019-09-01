@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="css/movie.css" />
+<div class="table-view" >
+    <div class="movie-cell"  ng-repeat="item in itemList">
+        <a href="#/movieDetail/{{item.id}}">
+            <div class="movie-cell-tag">
+                <span>- 影视 -</span>
+            </div>
+            <div class="movie-cell-title">
+                <span>{{item.title}}</span>
+            </div>
+            <div class="movie-cell-author">
+                <span>作者:{{item.author_name}}</span>
+            </div>
+            <div class="movie-cell-icon">
+                <img src="{{imagePrefix+item.img_url}}"/>
+            </div>
+            <div class="movie-cell-subtitle">
+                <span>{{item.subtitle}}</span>
+            </div>
+            <div class="movie-cell-forward">
+                <span>注:{{item.forward}}</span>
+            </div>
+        </a>
+    </div>
+</div>

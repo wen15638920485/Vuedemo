@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="css/music.css" />
+
+<div class="table-view">
+    <div class="music-cell" ng-repeat="item in itemList">
+        <a href="#/musicDetail/{{item.id}}">
+            <div class="music-cell-tag">
+                <span>- 音乐 -</span>
+            </div>
+            <div class="music-cell-title">
+                <span> {{item.title}}</span>
+            </div>
+            <div class="music-cell-author">
+                <span>作者: {{item.author_name}}</span>
+            </div>
+            <div class="music-cell-icon">
+                <img src="{{imagePrefix+item.img_url}}"/>
+                <div class="music-cell-icon-center"></div>
+            </div>
+            <div class="music-cell-forward">
+                <span>{{item.forward}}</span>
+            </div>
+            <div class="music-cell-tool">
+                <span>{{item.post_date}}</span>
+                <span>收藏: {{item.like_count}}</span>
+            </div>
+        </a>
+    </div>
+       
+</div>

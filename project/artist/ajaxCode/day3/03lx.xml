@@ -1,0 +1,23 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<bookStore>
+	<book id="1101">
+		<author>罗贯中</author>
+		<name>三国演义</name>
+		<type>小说</type>
+		<price>3</price>
+	</book>
+	<book id="1102">
+		<author>李世民</author>
+		<name>帝范</name>
+		<type>管理</type>
+		<price>10</price>
+	</book>
+	<book id="1103">
+		<author>孔子</author>
+		<name>春秋</name>
+		<type>历史</type>
+		<price>1</price>
+	</book>
+	
+</bookStore>

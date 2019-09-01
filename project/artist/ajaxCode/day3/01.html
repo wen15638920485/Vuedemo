@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<form>
+			
+			<label for="userName">用户名：</label><input type="text" name="userName" id="userName" value=""/>
+			<br />
+			<label for="password">密&nbsp;码：</label><input type="text" name="password" id="password" value=""/>
+			<br />
+			<input type="button" value="登录" id="btn"/>
+		</form>
+	</body>
+	
+	<script type="text/javascript">
+		
+		var btn = document.getElementById('btn');
+		
+		
+		btn.onclick = function(){
+			
+			var userName = document.getElementById('userName').value;
+			var pwd = document.getElementById('password').value;
+			
+			
+			var xhr = null;
+			
+			if(window.XMLHttpRequest){
+				xhr = new XMLHttpRequest();
+			}else{
+				xhr = ActiveXObject("Microsoft.XMLHTTP");
+			}
+			
+			
+			xhr.open('POST','../../api/public/selfPost.php');
+			
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			
+			xhr.send('userName=' +userName+ '&password=' + pwd);
+			
+			xhr.onreadystatechange = function(){
+				
+				if(xhr.readyState == 4 && xhr.status == 200){
+					console.log(xhr.responseText);
+				}
+			}
+			
+			
+			
+			
+		}
+		
+		
+	
+		
+		
+		
+	</script>
+	
+	
+</html>

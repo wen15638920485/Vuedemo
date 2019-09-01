@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$.ajax({
+				url: 'd.html',
+				success: function(data) {
+					console.log(data) //获取的是字符串 ；
+					console.log(JSON.parse(data)); //获取的是一个大对象
+					var obj = JSON.parse(data);
+					var obj1 = JSON.parse(obj[0].description);
+					console.log(obj1); //获取的是大对象中的一个小对象；
+
+					/* for(var i=0;i<obj1.length;i++){
+			            	var str='<li>'+'标题：'+obj1[i].title+'</li>';
+				            str+='<li>'+'价格：'+obj1[i].des+'</li>';
+				            str+='<li>'+obj1[i].sharetitle+'</li>';
+				            str+='<li>'+obj1[i].update+'</li>';
+				            str+='<li>'+obj1[i].id+'</li>';
+				            $('.box').append(str);
+			            }*/
+					$.each(obj1, function(index, obj) {
+						console.log(obj['sharetitle'])						
+						$('.box').append(							
+							"<div class='product'>" + 
+							//获得图片地址
+							"<div  class='p p'>" + obj['id'] +"</div>" +
+							//获得名字
+							"<div class='p1 p'>" + obj['sharetitle'] + "</div>" +
+							//获得性别
+							"<div class='p2 p'>" + obj['des'] + "</div>" +
+							//获得邮箱地址
+							"<div class='p3 p'>" + obj['update'] + "</div>" +
+							//获取id
+							"<div class='p4 p'>" + obj['id'] +"</div>" +					
+							"</div>");
+					});
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="box">
+			度尔千山过  飞雪戏丰城    心
+		</div>
+
+	</body>
+
+</html>

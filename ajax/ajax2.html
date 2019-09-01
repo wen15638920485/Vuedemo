@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="获取文档" />
+		<ul></ul>
+		<script type="text/javascript">
+			var ul=$('ul');
+			//console.log(ul)
+			$('input').click(function(){
+				$.ajax({
+					url:'ajax.json',
+					type:'get',
+					success:function(data) {
+						/* 
+						 * var a=[1,2,3,4]
+						 *  a[1]获取下标1的值
+						 * var a={color:'yellow',hex:'red'}
+						 * a.color  a[color] 对象获取  
+						 * */
+						var res=eval(data);//转化为数组对象
+						for (var i=0;i<res.length;i++) {
+							console.log(ul)
+							ul.append('<li>'+res[i].name+'</li>');
+						}
+					}
+				})
+				
+			});
+		</script>
+	</body>
+</html>

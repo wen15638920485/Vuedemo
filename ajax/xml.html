@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="获取新闻列表" />
+		<div id="info">
+				<ul></ul>
+		</div>
+		<script type="text/javascript">
+			$('input').click(function(){
+				var ul=$('#info>ul');
+				$.ajax({
+					url:'xml.php?'+new Date().getTime(),
+					type:'get',
+					success:function(xml) {
+						$(xml).find('title').each(function(){
+								alert($(this).text()) 
+								//操作xml文本是不能用 html()方法
+							ul.append('<li>'+$(this).text()+'</li>')
+						});
+					},
+//					 error:function(ss){
+//            	     console.log(ss);
+//                }	
+				});
+
+				/*$(document).ajaxError(function(){
+					$('span').html(’ajax请求发生错误‘)
+				})*/
+			})
+			
+		</script>
+	</body>
+</html>

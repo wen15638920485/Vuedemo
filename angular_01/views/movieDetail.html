@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="css/movie.css"/>
+<div class="movie-detail-box">
+    <div class="cover">
+        <img  ng-src="{{imagePrefix+data.poster}}">
+    </div>
+    <div class="player-box">
+        <video controls="controls" ng-src="{{media_url}}" width="100%"></video>
+    </div>
+    <div class="title">
+        <span>{{data.title}}</span>
+    </div>
+    <div class="info">
+        <span>{{data.info}}</span>
+    </div>
+    <div class="desc">
+        <div>- 剧情简介 -</div>
+        <div>{{data.officialstory}}</div>
+    </div>
+    <div class="background">
+     	   <img src=""/>
+       
+    </div>
+</div>
+
+

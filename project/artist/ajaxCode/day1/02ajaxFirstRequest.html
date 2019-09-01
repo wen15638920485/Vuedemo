@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>		
+		<input type="button" name="request" id="request" value="ajax" />
+	</body>	
+		<script type="text/javascript">			
+			/*注：运行不要作用HBuilder自代的运行按钮执行，通过ip或者域名，和路径打所需要运行的网页。*/
+			var btn = document.getElementById('request');	
+			btn.addEventListener('click',function(){
+				/*ajax分为几步
+				 * */
+				//1、创建对象XMLHttpRequest
+				var xhr = new XMLHttpRequest();				
+				console.log(xhr.readyState);
+				//2、设置url,准备发送请求open（“post/get”，url,true）
+				xhr.open('get','../api/public/index.php?m=main&a=list',true);
+				console.log(xhr.readyState);
+				//3、发送请求：send();
+				xhr.send();
+				//4、服务器返回数据，也就是说回调函数。
+				xhr.onreadystatechange = function(){
+					console.log(xhr.readyState);
+					//请求的返回值：
+					if(xhr.readyState == 4){//请求完成	
+						if(xhr.status == 200){//200表示网络请求成功，		
+							//获取服务器响应数据。
+//							console.log(xhr.responseText);						
+							//把json串转换成object
+							console.log(JSON.parse(xhr.responseText));
+						}
+					}					
+				}	
+			})
+			
+			
+		</script>
+	
+</html>

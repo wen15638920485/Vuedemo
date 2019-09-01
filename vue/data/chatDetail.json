@@ -1,0 +1,36 @@
+{
+	"code":100,
+	"desc":"聊天详情",
+	"result":{
+		"currentUser":{
+			"userId":"100",
+			"username":"Quiet",
+			"headImage":"",
+			"sign":"寂静的世界"
+		},
+		"chatUser":{
+			"userId":"200",
+			"username":"冰夜琉璃",
+			"headImage":"",
+			"sign":"冰夜琉璃的世界"
+		},
+		"messageList":[
+			{
+				"type":"0",
+				"id":"m001",
+				"from":"Quiet",
+				"to":"冰夜琉璃",
+				"message":"你愁啥",
+				"time":"12:22:22"
+			},
+			{
+				"type":"1",
+				"id":"m002",
+				"from":"冰夜琉璃",
+				"to":"Quiet",
+				"message":"瞅你咋的",
+				"time":"12:22:23"
+			}
+		]
+	}
+}

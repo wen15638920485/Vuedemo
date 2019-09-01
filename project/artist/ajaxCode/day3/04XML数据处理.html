@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="ajax" />
+	</body>
+	<script type="text/javascript">
+		
+		var btn = document.getElementById('btn');
+		btn.onclick = function(){		
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET','../../api/public/xmlData.php');
+//			xhr.setRequestHeader("Content-type",'text/xml')			xhr.send();
+			xhr.onreadystatechange = function(){	
+				if(xhr.readyState == 4 && xhr.status == 200){
+					/*返回数据是json数据时，使用responseText即可。*/
+//					console.log(xhr.responseText);
+					//如果后台给的是xml数据，一定要使用。responseXML
+//					console.log(xhr.responseXML);
+					//根元素
+					var rootElement = xhr.responseXML;
+					//获取是每一本书book元素。
+					var books = rootElement.getElementsByTagName('book');
+					//获取第一本书名字，和作者。
+					var firstB = books[2];
+					console.log(firstB);
+						console.log(firstB.id);
+					//firstB.getElementsByTagName('name')[0]name元素，  
+					var firstN = firstB.getElementsByTagName('name')[0].textContent;
+					console.log(firstN);
+					var firstN = firstB.getElementsByTagName('type')[0].textContent;
+					/*兼容textcontent会用w3c，text适用于Ie，获取当前所有元素*/
+					console.log(firstN);
+					var firstN = firstB.getElementsByTagName('author')[0].textContent;
+					
+	
+					console.log(firstN);
+				
+					
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		
+		
+	</script>
+	
+	
+</html>

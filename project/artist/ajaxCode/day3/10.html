@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/*
+		 *规范   
+		 * type  是什么请求
+		 * URl	请求路经
+		 * 
+		 * asuxc  同步还是异步
+		 * data   post请求发送的数据
+		 * data——type 还回的数据
+		 * */
+	mayAjax({
+		type:'get',
+		url:
+		data:
+		data_type:
+		success:function(ce){
+			console.log('ce')
+		}
+	});
+		function myAjax(obj){
+				var xhr=null;
+				
+				
+		if(window.XMLHttpRequest){
+			xhr=new XMLHttpRequest();
+		}else{
+			xhr.ActiveXObject('Microsf。XMLHTTP');
+		}
+	
+		//判断
+		xhr.ope(obj.type,obj.url,abj.async);	
+		if(obj.type.toLocaleLowerCase()=='psot'){
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");	
+		}
+
+		xhr.send(obj.data);
+		//默认值
+		obj.async==undefined?obj.async=true:obj.async;
+		
+		//默认值
+		obj.data_type=obj.data_type||'josn';
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				if(obj.data.type=='json'){
+					xhr.responseText;
+					obj.
+				}else{
+					xhr.responseXML;
+				}
+				
+			}
+			
+		  }
+		
+		}
+	</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<input type="button" name="btn" id="btn" value="ajax" />
+		
+		<ul id="books">
+			
+		
+			
+		</ul>
+	</body>
+	<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		
+		var btn = document.getElementById('btn');
+		var ul = document.getElementById('books');		
+		btn.addEventListener('click',function(){		
+			$.ajax({
+				type:"get",
+				url:"../../api/public/index.php?m=main&a=list",
+				async:true,
+				success:function(content){
+					
+					var obj =JSON.parse(content);
+					
+					var books = obj.data;
+					
+					console.log(books);
+					 for(var i = 0; i<books.length;i++){
+					 	var li = document.createElement('li');
+					 	
+					 	li.innerHTML  = books[i].title;	
+					 	//li.innerHTML  = books[i].id;
+					 	
+					 	ul.appendChild(li);
+					 	
+					 }
+					
+				}
+			});		
+			function addli(arr){	
+				
+			}
+			
+		});
+		
+		
+		
+	</script>
+	
+</html>

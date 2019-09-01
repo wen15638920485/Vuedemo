@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="button" name="ajax" id="btn" value="ajax" />
+	</body>
+	<script type="text/javascript">
+		var btn = document.getElementById('btn');
+
+		//封装函数的是ajax
+		btn.onclick = function() {
+			 
+			var obj = {
+				type:'get',
+				url: '../../api/public/index.php?m=main&a=list',
+				success: function(text) {
+					console.log("-----obj------success----------");
+					console.log(text);
+				}
+			}
+		
+		function myAjax(netobj) {
+			var xhr = new XMLHttpRequest();
+			xhr.open(netobj.type, netobj.url);
+			xhr.send();
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && status == 200) {
+					netobj.susccess(xhr.responseText);
+				}
+
+			}
+		}
+
+		jQuery.ajax({
+			type: 'get',
+			url: '../../api/public/index.php?m=main&a=',
+			success: function(text) { //请求成功方法
+				console.log("-----ajax------success----------");
+				console.log(text);
+			},
+			fail: function(error) { //请求失败方法
+				console.log(error);
+			}
+		});
+
+	}
+	</script>
+
+</html>

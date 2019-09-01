@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<input type="button" name="btn" id="btn" value="ajax" />
+	</body>
+	
+	
+	<script type="text/javascript">
+		
+		/*动态创建一script的标签*/
+		//添加请求资源路经
+		//把script添加到html上		
+		var script=document.createElement('script');
+	var josnp=function(ul,d){
+		
+		//callback的value值
+		script.src='http://localhost/project/artist/api/public/jsonpApi.php?callback=fun'
+		document.getElementsByTagName('head')[0].appendChild(script);
+		var d=function fun(content){
+			console.log(content);
+			
+			script.remove();
+			}
+		
+		
+			josnp();
+		}
+	</script>
+</html>

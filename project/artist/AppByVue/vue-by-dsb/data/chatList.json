@@ -1,0 +1,24 @@
+{
+  "code" : 0,
+  "desc" : "聊天信息列表",
+  "result" : [
+    {
+      "headImage" : "images/head1.jpeg",
+      "lastMessage" : "睡了么?",
+      "userId" : "001",
+      "username" : "冰夜琉璃"
+    },
+    {
+      "headImage" : "images/head2.jpeg",
+      "lastMessage" : "睡了么?",
+      "userId" : "002",
+      "username" : "苏-杰斯特-雅典娜"
+    },
+    {
+      "headImage" : "images/head3.jpeg",
+      "lastMessage" : "哈哈",
+      "userId" : "003",
+      "username" : "阚清子"
+    }
+  ]
+}

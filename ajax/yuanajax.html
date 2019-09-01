@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			//1.创建XMLHttpRequest对象考虑兼容性
+			var xhr = null
+			if(window.XMLHttpRequest) {
+				//现代浏览器
+				xhr = new XMLHttpRequest()
+			} else {
+				xhr = new ActiveXObject('Microsoft.XMLHTTP') //IE5/6
+			}
+		}
+		console.log('状态A' + xhr.readyState)
+		//2.设置请求方式。第一种方式get请求（2）post请求
+		var url = '数据'
+		//get请求，true异步请求，false，同步
+		xhr.open('get', url, true)
+		console.log('状态B' + xhr.readyState)
+
+		/*（2）post请求 必须添加请求头
+		   var url = '数据'
+		   xhr.open('post', url, true)
+		   xhr.setRequestHander('Content-type','application/x-www-form-urlencoded')
+		 */
+		//3.发送请求
+		xhr.send()
+		console.log('状态C' + xhr.readyState)
+
+		//4.回调函数
+		xhr.onreadyStatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xhr.resposeText) //字符串
+					//console.log(xhr.resposeXML) 
+				}
+		}
+	</script>
+
+</html>

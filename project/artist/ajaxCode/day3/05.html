@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+			
+		<input type="button" name="btn" id="btn" value="ajax" />
+		<img src="../../api/images/0.jpg"/>
+
+	</body>
+	
+	
+
+	
+	
+<!--跨域解决方案是同过script标签解决的-->
+	<script type="text/javascript">
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			
+			
+			
+			var xhr=new XMLHttpRequest();
+			xhr.open('get','http://localhost/project/artist/api/public/xmlData.php');
+			xhr.send();
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					var rootElement=xhr.responseXML;
+					console.log(rootElement);
+				}
+				
+			}
+		}
+		 
+		/*
+		 ajax
+		 *url  ip 端口号   路经  所谓同源   url ip  端口号相同是同源
+		 * */
+		//同源请求策略响应
+		/*
+		 * 跨域；
+		 *  不同源的请求就时 跨域
+		 * 
+		 * 同过1 。scpript添加资源路经，2把请求的数据相当于卸载中，函数据把我的数据传出来
+		 * 
+		 * 
+		 * */
+			
+	</script>
+			
+</html>

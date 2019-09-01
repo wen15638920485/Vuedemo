@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+	</head>
+
+	<body>
+
+		<div class="box">
+			<div class="ads">
+				<img draggable="false" src="images/Fr1vUvOQsLGDhW8xvL8N51IomPjq.jpg" />
+			</div>
+
+			<ul class="table-view">
+				<li class="main-cell" ng-repeat="item in itemList" ng-click="dealClick($index)">
+
+					<a href="{{item.detailPath}}">
+						<div class="main-cell-tag" class="">
+							<span>- {{item.categoryName}} -</span>
+						</div>
+						<div class="main-cell-title" class="">
+							<span>{{item.title}} </span>
+						</div>
+						<div class="main-cell-author">
+							<span>作者: {{item.author_name}}</span>
+						</div>
+						<div class="main-cell-icon">
+							<img src="{{imagePrefix}}{{item.img_url}}">
+						</div>
+						<div class="main-cell-forward">
+							<span>{{item.forward}}</span>
+						</div>
+						<div class="main-cell-tool">
+							<span>7小时前</span>
+							<span>收藏: {{item.like_count}}</span>
+						</div>
+
+					</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<!--
+		<input type="text" name="" id="" value="搜索" class="searchBar"/>
+		
+		<div class="tableView">
+			
+			
+			
+			
+				<div class="wechat-cell" ng-repeat="chat in chatList">
+					
+					<a href="#/chatDetail/{{chat.userId}}">
+						<img src="{{chat.headImage}}">
+					<span class="username">{{chat.username}}</span>
+					<span class="message">{{chat.lastMessage}}</span>
+				</div>
+				
+					</a>
+			
+			
+		</div>
+		-->
+
+	</body>
+
+</html>

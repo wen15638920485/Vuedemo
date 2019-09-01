@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/*
+1. 每个jsonp请求唯一，防止缓存，每个请求存储内容如下
+    {
+        callback: function(){},
+        scriptNode: [domNode]
+        timer: [定时器]
+    }
+2. src的参数需要编码
+3. 请求超时,抛出错误
+4. 使用说明，使用方式类似JQuey的ajax方式，例: jsonp({
+      url:[string],
+      data:[obj],
+      callback:[function],
+      fail: [function],
+      timeout: [number]
+})
+*/
+
+function jsonp(opts) {
+    if (!opts || !opts.url) {
+        return;
+    }
+    // 初始化参数
+    var options = {
+        url: opts.url,
+        data: opts.data ? opts.data : null,
+        callback: opts.callback ? opts.callback : null,
+        fail: opts.fail ? opts.fail : null,
+        timeout: opts.timeout ? opts.timeout : 3000
+    }
+    var helper = {
+        joinURL: function(url, data) {
+            if (!url || !data) {
+                return;
+            }
+            for (var i in data) {
+                if (data.hasOwnProperty(i)) {
+                    if (url.indexOf("?") >= 0) {
+                        url += "&";
+                    } else {
+                        url += "?";
+                    }
+                    url += i + "=" + data[i];
+                }
+            }
+            return url;
+        },
+        encodeURL: function(url) {
+            var param = url.split("?")[1];
+            var url = url.split("?")[0];
+            var params = param.split("&");
+            var parLen = params.length;
+
+            for (var i = 0; i < parLen; i++) {
+                var paItem = params[i].split("=");
+                url += url.indexOf("?") >= 0 ? "&" : "?";
+                url += encodeURIComponent(paItem[0]) + "=" + encodeURIComponent(paItem[1]);
+            }
+            return url;
+        },
+    };
+
+    // new Date().getTime()不够精确，加上count计数，确保唯一,也可以使用随机函数，但我认为这样更简单。
+    if (window["count"]) {
+        window["count"]++;
+    } else {
+        window["count"] = 1;
+    }
+
+    // requestId 唯一jsonp请求
+    var requestId = "jsonp" + new Date().getTime() + window['count'];
+
+    var head = document.getElementsByTagName("head")[0];
+    var script = null;
+    window[requestId] = {};
+
+    // 请求值拼接到url
+
+    if (options.data) {
+        options.url = helper.joinURL(options.url, options.data);
+    }
+
+    //创建script结点
+    script = document.createElement("script");
+    if (options.url.indexOf("?") >= 0) {
+        script.src = helper.encodeURL(options.url + "&callback=" + requestId + ".callback");
+    } else {
+        script.src = helper.encodeURL(options.url + "?callback=" + requestId + ".callback");
+    }
+    script.charset = "UTF-8";
+    head.appendChild(script);
+    window[requestId]["scriptNode"] = script;
+
+    //重新封装回调函数，调用后应删除script结点,删除该请求信息。
+    window[requestId]['callback'] = function(data) {
+        try {
+            options.callback && options.callback(data);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            head.removeChild(window[requestId]["scriptNode"]);
+            clearTimeout(window[requestId]["timer"]);
+            delete window[requestId];
+        }
+    };
+
+    // 超时调用
+    window[requestId]["timer"] = setTimeout(function() {
+        //抛出异常，并做异常处理
+        try {
+            throw new Error("over time");
+        } catch (e) {
+            if (options.fail) {
+                options.fail(e.message);
+            }
+        }
+        head.removeChild(window[requestId]["scriptNode"]);
+        delete window[requestId];
+    }, options.timeout);
+}
+	</script>
+</html>

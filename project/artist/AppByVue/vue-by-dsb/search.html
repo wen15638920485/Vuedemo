@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>搜索</title>
+<link rel="stylesheet" href="css/app.css" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<style>
+	body{  background: #5e5e5e;}
+	form{
+            width: 260px;
+            height: 260px;
+            margin: 0px  auto;
+            background: #b9def0;
+			padding:30px;
+            border: 1px solid #3c3c3c;
+           }
+</style>
+</head>
+<body>
+<form>
+<input type="text" name="key" id="key">
+<input type="button" value="搜索" onclick="url_data()">
+</form>
+<script>
+function url_data(){
+var oInput=document.getElementById('key');
+location.href='searchIndex.html?key='+encodeURI(key.value);
+//alert(key.value);
+}
+</script>
+</form>
+</body>
+</html>

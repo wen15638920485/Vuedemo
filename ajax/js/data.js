@@ -1,0 +1,2 @@
+cd([{"code":"102","paramvalue":"0","isactive":1,"description":"[{\"id\":3,\"show\":\"1\",\"shareshow\":\"0\",\"title\":\"活动介绍\",\"sharetitle\":\"这是一款买汽车票的APP,注册抢红包\",\"des\":\"你需要的长途汽车票都在这里,Bus365让你买票不排队\",\"img\":\"banner\",\"url\":\"\", \"update\":\"20140516\"},{\"id\":4,\"show\":\"1\",\"shareshow\":\"0\",\"title\":\"活动介绍\",\"sharetitle\":\"这是一款买汽车票的APP,注册抢红包\",\"des\":\"你需要的长途汽车票都在这里,Bus365让你买票不排队\",\"img\":\"banner_insurce\",\"url\":\"active/safeinsure2016/safeinsure2016\", \"update\":\"20140516\"}]","updatetime":1481185799000,"createtime":1429232910000}]
+)

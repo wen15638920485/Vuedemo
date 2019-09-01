@@ -1,0 +1,22 @@
+{
+	"code":0,
+	"desc":"ok",
+	"data":[
+  	 	{
+  	 		"item_id":"1966",
+			"item_type":"1",
+			"item_image":"images/ads1.jpg"
+  	 	},
+  	 	{
+  	 		"item_id":"1966",
+			"item_type":"1",
+			"item_image":"images/ads2.jpg"
+  	 	},
+  	 	{
+  	 		"item_id":"1966",
+			"item_type":"1",
+			"item_image":"images/ads3.jpg"
+  	 	}
+	]
+}
+

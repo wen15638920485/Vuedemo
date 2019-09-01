@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="点击" />
+		<div class="box">
+			
+		</div>
+		<script type="text/javascript">
+			function cd(data){
+				var obj1=JSON.parse(data[0].description);
+			            console.log(obj1);
+			            for(var i=0;i<obj1.length;i++){
+			            	var str='<li>'+'标题：'+obj1[i].title+'</li>';
+				            str+='<li>'+'价格：'+obj1[i].des+'</li>';
+				            str+='<li>'+obj1[i].sharetitle+'</li>';
+				            str+='<li>'+obj1[i].update+'</li>';
+				            str+='<li>'+obj1[i].id+'</li>';
+				            $('.box').append(str);
+			            }
+			}
+			$('[type=button]').click(function(){
+				var ele=document.createElement('script');
+				ele.src='js/data.js';
+			   document.body.appendChild(ele);
+			})
+		</script>
+	</body>
+</html>
