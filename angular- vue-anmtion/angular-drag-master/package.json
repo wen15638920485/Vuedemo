@@ -18,7 +18,7 @@
     "min": "webpack -p"
   },
   "devDependencies": {
-    "jquery": "^2.1.4",
+    "jquery": "^3.5.0",
     "angular": "^1.4.8",
     "jshint": "^2.8.0",
     "jshint-loader": "^0.8.3",
